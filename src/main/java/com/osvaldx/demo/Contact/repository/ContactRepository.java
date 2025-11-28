@@ -8,13 +8,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     List<Contact> findContactsByCategory(ContactCategory category);
-    List<Contact> findByPhone(String phone);
-    List<Contact> findByEmail(String email);
-    List<Contact> findByFirstnameContaining(String text);
+    Optional<Contact> findByPhone(String phone);
+    Optional<Contact> findByEmail(String email);
+    Optional<Contact> findContactById(Long id);
 
 }
