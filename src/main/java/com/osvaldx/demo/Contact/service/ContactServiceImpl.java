@@ -4,8 +4,8 @@ import com.osvaldx.demo.Contact.enums.ContactCategory;
 import com.osvaldx.demo.Contact.model.Contact;
 import com.osvaldx.demo.Contact.repository.ContactRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContactServiceImpl implements ContactService{
@@ -32,22 +32,22 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
-    public List<Contact> findContactByPhone(String phone) {
+    public Optional<Contact> findContactByPhone(String phone) {
         return contactRepository.findByPhone(phone);
     }
 
     @Override
-    public List<Contact> findContactByEmail(String email) {
+    public Optional<Contact> findContactByEmail(String email) {
         return contactRepository.findByEmail(email);
     }
 
     @Override
-    public List<Contact> findContactByFistnameContaining(String text) {
-        return contactRepository.findByFirstnameContaining(text);
+    public Optional<Contact> findContactById(Long id) {
+        return this.contactRepository.findContactById(id);
     }
 
     @Override
-    public Contact updateContact(Long id ,Contact contact) {
+    public Contact updateContact(Long id , Contact contact) {
         contact.setId(id);
         return contactRepository.save(contact);
     }
